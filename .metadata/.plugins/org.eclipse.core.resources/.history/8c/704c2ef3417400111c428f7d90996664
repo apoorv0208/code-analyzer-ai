@@ -1,0 +1,51 @@
+package com.apoorv.codeexplainer.service;
+
+import com.apoorv.codeexplainer.dto.AnalyzeRequest;
+import com.apoorv.codeexplainer.dto.AnalyzeResponse;
+import com.apoorv.codeexplainer.dto.StructureDto;
+import org.springframework.stereotype.Service;
+@Service
+public class AnalysisService {
+
+    private final ParserService parserService;
+    private final OpenAIService openAIService;
+    public AnalysisService(
+            ParserService parserService,
+            OpenAIService openAIService) {
+
+        this.parserService = parserService;
+        this.openAIService = openAIService;
+    }
+    
+    public AnalyzeResponse analyze(
+            AnalyzeRequest request) {
+
+        AnalyzeResponse response =
+                new AnalyzeResponse();
+
+        StructureDto structure =
+                parserService.parse(
+                        request.getCode(),
+                        request.getLanguage()
+                );
+
+        response.setStructure(structure);
+
+        String explanation =
+                openAIService.explainCode(
+                        request.getCode(),
+                        request.getLanguage()
+                );
+
+        response.setExplanation(explanation);
+
+        response.setConfidence(92);
+        response.setOptimizedCode(
+                openAIService.optimizeCode(
+                        request.getCode(),
+                        request.getLanguage()
+                )
+        );
+        return response;
+    }
+}

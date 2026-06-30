@@ -1,0 +1,26 @@
+package com.apoorv.codeexplainer.controller;
+
+import org.springframework.web.bind.annotation.*;
+
+import com.apoorv.codeexplainer.dto.*;
+import com.apoorv.codeexplainer.service.AnalysisService;
+
+@RestController
+@RequestMapping("/api")
+@CrossOrigin(origins = "http://localhost:3000")
+public class AnalysisController {
+
+    private final AnalysisService analysisService;
+
+    public AnalysisController(
+            AnalysisService analysisService) {
+        this.analysisService = analysisService;
+    }
+
+    @PostMapping("/analyze")
+    public AnalyzeResponse analyze(
+            @RequestBody AnalyzeRequest request) {
+
+        return analysisService.analyze(request);
+    }
+}

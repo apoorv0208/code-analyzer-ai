@@ -1,0 +1,58 @@
+package com.apoorv.codeexplainer.parser;
+
+import org.springframework.stereotype.Component;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+
+@Component
+public class JavaScriptCodeParser {
+
+    public StructureDto parseJavaScript(String code) {
+
+        StructureDto dto = new StructureDto();
+
+        dto.setFunctions(
+                countMatches(code, "function ")
+                +
+                countMatches(code, "=>")
+        );
+
+        dto.setLoops(
+        		
+        		countMatches(code, "for(")
+        		+
+        		countMatches(code, "for (")
+        		+
+        		countMatches(code, "while(")
+        		+
+        		countMatches(code, "while (")
+        		
+        );
+
+        dto.setConditionals(
+        		countMatches(code, "if(")
+        		+
+        		countMatches(code, "if (")
+        		
+        );
+
+        dto.setClasses(
+                countMatches(code, "class ")
+        );
+
+        return dto;
+    }
+
+    private int countMatches(String text, String pattern) {
+
+        int count = 0;
+        int index = 0;
+
+        while ((index = text.indexOf(pattern, index)) != -1) {
+            count++;
+            index += pattern.length();
+        }
+
+        return count;
+    }
+}

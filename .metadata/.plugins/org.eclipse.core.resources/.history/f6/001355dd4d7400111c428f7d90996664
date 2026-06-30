@@ -1,0 +1,67 @@
+package com.apoorv.codeexplainer.parser;
+
+import org.springframework.stereotype.Component;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+
+@Component
+public class JavaCodeParser {
+
+	public StructureDto parseJava(
+	        String code,
+	        String language) {
+
+	    StructureDto dto = new StructureDto();
+
+	    if(language.equalsIgnoreCase("javascript")) {
+
+	        dto.setFunctions(
+	                countMatches(code, "function ")
+	        );
+
+	        dto.setLoops(
+	                countMatches(code, "for")
+	                +
+	                countMatches(code, "while")
+	        );
+
+	        dto.setConditionals(
+	                countMatches(code, "if")
+	        );
+
+	        dto.setClasses(
+	                countMatches(code, "class ")
+	        );
+
+	        return dto;
+	    }
+
+	    // Java Parsing
+
+	    dto.setFunctions(
+	            countMatches(code, "public")
+	            +
+	            countMatches(code, "private")
+	            +
+	            countMatches(code, "protected")
+	    );
+
+	    dto.setLoops(
+	            countMatches(code, "for")
+	            +
+	            countMatches(code, "while")
+	    );
+
+	    dto.setConditionals(
+	            countMatches(code, "if")
+	    );
+
+	    dto.setClasses(
+	            countMatches(code, "class ")
+	    );
+
+	    return dto;
+	}
+}

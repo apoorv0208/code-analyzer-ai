@@ -1,0 +1,59 @@
+package com.apoorv.codeexplainer.parser;
+
+import org.springframework.stereotype.Component;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+import com.github.javaparser.JavaParser;
+import com.github.javaparser.ast.CompilationUnit;
+
+@Component
+public class JavaCodeParser {
+
+    public StructureDto parseJava(String code) {
+
+        StructureDto structure = new StructureDto();
+
+        try {
+
+        	JavaParser parser = new JavaParser();
+
+        	CompilationUnit cu =
+        	        parser.parse(code)
+        	              .getResult()
+        	              .orElseThrow();
+
+            structure.setFunctions(
+                    cu.findAll(
+                            com.github.javaparser.ast.body.MethodDeclaration.class
+                    ).size()
+            );
+
+            structure.setClasses(
+                    cu.findAll(
+                            com.github.javaparser.ast.body.ClassOrInterfaceDeclaration.class
+                    ).size()
+            );
+
+            structure.setLoops(
+                    cu.findAll(
+                            com.github.javaparser.ast.stmt.ForStmt.class
+                    ).size()
+                    +
+                    cu.findAll(
+                            com.github.javaparser.ast.stmt.WhileStmt.class
+                    ).size()
+            );
+
+            structure.setConditionals(
+                    cu.findAll(
+                            com.github.javaparser.ast.stmt.IfStmt.class
+                    ).size()
+            );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return structure;
+    }
+}

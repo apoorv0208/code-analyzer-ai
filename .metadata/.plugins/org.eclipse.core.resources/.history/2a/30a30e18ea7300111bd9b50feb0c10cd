@@ -1,0 +1,17 @@
+package com.apoorv.codeexplainer.dto;
+
+import lombok.Data;
+
+@Data
+public class AnalyzeResponse {
+
+    private String explanation;
+
+    private StructureDto structure;
+
+    private ComplexityDto complexity;
+
+    private Integer confidence;
+
+    private String optimizedCode;
+}

@@ -1,0 +1,31 @@
+package com.apoorv.codeexplainer.service;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
+
+@Service
+public class OpenAIService {
+
+    @Value("${openai.api.key}")
+    private String apiKey;
+
+    public String explainCode(String code, String language) {
+
+        String prompt = """
+        Explain the following %s code in plain English.
+
+        Requirements:
+        - Maximum 4 sentences.
+        - Explain what the code does.
+        - Mention important logic blocks.
+        - Use beginner friendly language.
+        - Avoid technical jargon.
+
+        Code:
+        %s
+        """.formatted(language, code);
+
+        // temporary placeholder until SDK integration
+        return "AI explanation will appear here.";
+    }
+}

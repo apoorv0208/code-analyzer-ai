@@ -1,0 +1,39 @@
+package com.apoorv.codeexplainer.service;
+
+import com.apoorv.codeexplainer.dto.AnalyzeRequest;
+import com.apoorv.codeexplainer.dto.AnalyzeResponse;
+import com.apoorv.codeexplainer.dto.StructureDto;
+import org.springframework.stereotype.Service;
+@Service
+public class AnalysisService {
+
+    private final ParserService parserService;
+
+    public AnalysisService(
+            ParserService parserService) {
+        this.parserService = parserService;
+    }
+
+    public AnalyzeResponse analyze(
+            AnalyzeRequest request) {
+
+        AnalyzeResponse response =
+                new AnalyzeResponse();
+
+        StructureDto structure =
+                parserService.parse(
+                        request.getCode(),
+                        request.getLanguage()
+                );
+
+        response.setStructure(structure);
+
+        response.setExplanation(
+                "Analysis completed successfully."
+        );
+
+        response.setConfidence(92);
+
+        return response;
+    }
+}

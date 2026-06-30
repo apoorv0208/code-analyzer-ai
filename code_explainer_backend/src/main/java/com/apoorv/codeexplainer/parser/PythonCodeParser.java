@@ -1,0 +1,91 @@
+package com.apoorv.codeexplainer.parser;
+
+import org.springframework.stereotype.Component;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+@Component
+public class PythonCodeParser {
+	private int countRegex(String text, String regex) {
+
+	    Pattern pattern = Pattern.compile(regex);
+	    Matcher matcher = pattern.matcher(text);
+
+	    int count = 0;
+
+	    while (matcher.find()) {
+	        count++;
+	    }
+
+	    return count;
+	}
+    public StructureDto parsePython(String code) {
+
+        StructureDto dto = new StructureDto();
+
+        dto.setFunctions(
+                countMatches(code, "def ")
+        );
+        String functionName =
+                extractFunctionName(code);
+
+        if (functionName != null) {
+
+            int occurrences =
+                    countMatches(
+                            code,
+                            functionName + "("
+                    );
+
+            dto.setRecursive(
+                    occurrences > 1
+            );
+        }
+        dto.setLoops(
+        		countRegex(code, "\\bfor\\s+\\w+\\s+in\\s+")
+        	       +
+        	    countRegex(code, "\\bwhile\\s+")
+        );
+
+        dto.setConditionals(
+                countMatches(code, "if ")
+        );
+
+        dto.setClasses(
+                countMatches(code, "class ")
+        );
+        System.out.println("FOR count: " + countMatches(code, "for "));
+        System.out.println("WHILE count: " + countMatches(code, "while "));
+        System.out.println("Total loops: " + dto.getLoops());
+        return dto;
+    }
+
+    private int countMatches(String text, String pattern) {
+
+        int count = 0;
+        int index = 0;
+
+        while ((index = text.indexOf(pattern, index)) != -1) {
+            count++;
+            index += pattern.length();
+        }
+
+        return count;
+    }
+    private String extractFunctionName(String code) {
+
+        Pattern pattern =
+                Pattern.compile("def\\s+(\\w+)\\(");
+
+        Matcher matcher =
+                pattern.matcher(code);
+
+        if (matcher.find()) {
+            return matcher.group(1);
+        }
+
+        return null;
+    }
+}

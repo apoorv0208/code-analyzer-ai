@@ -1,0 +1,33 @@
+package com.apoorv.codeexplainer.service;
+
+import org.springframework.stereotype.Service;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+import com.apoorv.codeexplainer.parser.*;
+@Service
+public class ParserService {
+
+	public StructureDto parse(String code, String language) {
+
+	    System.out.println("Language: " + language);
+	    System.out.println(code);
+
+	    if(language.equalsIgnoreCase("python")) {
+	        return PythonCodeParser.parsePython(code);
+	    }
+
+	    return javaCodeParser.parseJava(code);
+	}
+
+    private StructureDto parseJava(String code) {
+        return new StructureDto();
+    }
+
+    private StructureDto parseJavaScript(String code) {
+        return new StructureDto();
+    }
+
+    private StructureDto parsePython(String code) {
+        return new StructureDto();
+    }
+}

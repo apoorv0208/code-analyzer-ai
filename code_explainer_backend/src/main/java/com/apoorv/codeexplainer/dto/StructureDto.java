@@ -1,0 +1,50 @@
+package com.apoorv.codeexplainer.dto;
+
+public class StructureDto {
+
+    private int functions;
+    private int loops;
+    private int conditionals;
+    private int classes;
+    private boolean recursive;
+    
+    public boolean isRecursive() {
+        return recursive;
+    }
+
+    public void setRecursive(boolean recursive) {
+        this.recursive = recursive;
+    }
+    
+    public int getFunctions() {
+        return functions;
+    }
+
+    public void setFunctions(int functions) {
+        this.functions = functions;
+    }
+
+    public int getLoops() {
+        return loops;
+    }
+
+    public void setLoops(int loops) {
+        this.loops = loops;
+    }
+
+    public int getConditionals() {
+        return conditionals;
+    }
+
+    public void setConditionals(int conditionals) {
+        this.conditionals = conditionals;
+    }
+
+    public int getClasses() {
+        return classes;
+    }
+
+    public void setClasses(int classes) {
+        this.classes = classes;
+    }
+}

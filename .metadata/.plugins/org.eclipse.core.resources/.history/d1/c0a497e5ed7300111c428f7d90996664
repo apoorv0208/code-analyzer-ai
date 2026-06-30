@@ -1,0 +1,24 @@
+private StructureDto parsePython(String code) {
+
+    StructureDto dto = new StructureDto();
+
+    dto.setFunctions(
+            countMatches(code, "def ")
+    );
+
+    dto.setLoops(
+            countMatches(code, "for ")
+            +
+            countMatches(code, "while ")
+    );
+
+    dto.setConditionals(
+            countMatches(code, "if ")
+    );
+
+    dto.setClasses(
+            countMatches(code, "class ")
+    );
+
+    return dto;
+}

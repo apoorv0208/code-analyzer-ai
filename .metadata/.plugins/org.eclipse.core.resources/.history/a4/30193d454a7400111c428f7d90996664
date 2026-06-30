@@ -1,0 +1,46 @@
+package com.apoorv.codeexplainer.parser;
+
+import org.springframework.stereotype.Component;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+
+@Component
+public class PythonCodeParser {
+
+    public StructureDto parsePython(String code) {
+
+        StructureDto dto = new StructureDto();
+
+        dto.setFunctions(
+                countMatches(code, "def ")
+        );
+
+        dto.setLoops(
+                countMatches(code, "for ")
+                +
+                countMatches(code, "while ")
+        );
+
+        dto.setConditionals(
+                countMatches(code, "if ")
+        );
+
+        dto.setClasses(
+                countMatches(code, "class ")
+        );
+
+        return dto;
+    }
+
+    private int countMatches(String code, String keyword) {
+        int count = 0;
+        int index = 0;
+
+        while ((index = code.indexOf(keyword, index)) != -1) {
+            count++;
+            index += keyword.length();
+        }
+
+        return count;
+    }
+}

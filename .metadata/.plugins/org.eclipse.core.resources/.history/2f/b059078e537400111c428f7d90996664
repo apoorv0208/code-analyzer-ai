@@ -1,0 +1,4 @@
+spring.application.name=code_explainer_backend
+server.port=8080
+groq.api.key=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
+groq.model=llama-3.1-8b-instant

@@ -1,0 +1,10 @@
+package com.apoorv.codeexplainer.dto;
+
+import lombok.Data;
+
+@Data
+public class AnalyzeRequest {
+
+    private String code;
+    private String language;
+}

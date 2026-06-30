@@ -1,0 +1,17 @@
+package com.apoorv.codeexplainer.service;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class OpenAIService {
+
+    public String explainCode(String code, String language) {
+
+        return "AI explanation will be generated here.";
+    }
+
+    public String optimizeCode(String code, String language) {
+
+        return code;
+    }
+}

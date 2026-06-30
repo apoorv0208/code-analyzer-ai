@@ -1,0 +1,23 @@
+package com.apoorv.codeexplainer.dto;
+
+public class AnalyzeResponse {
+
+    private String explanation;
+    private Integer confidence;
+
+    public String getExplanation() {
+        return explanation;
+    }
+
+    public void setExplanation(String explanation) {
+        this.explanation = explanation;
+    }
+
+    public Integer getConfidence() {
+        return confidence;
+    }
+
+    public void setConfidence(Integer confidence) {
+        this.confidence = confidence;
+    }
+}

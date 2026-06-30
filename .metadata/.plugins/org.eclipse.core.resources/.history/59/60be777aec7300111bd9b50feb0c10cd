@@ -1,0 +1,12 @@
+package com.apoorv.codeexplainer.dto;
+
+import lombok.Data;
+
+@Data
+public class StructureDto {
+
+    private int functions;
+    private int loops;
+    private int conditionals;
+    private int classes;
+}

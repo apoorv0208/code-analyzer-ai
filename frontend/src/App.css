@@ -1,0 +1,430 @@
+/* ================= GLOBAL ================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f4f7fb;
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    color: #2d3748;
+}
+
+#root {
+    min-height: 100vh;
+}
+
+
+/* ================= HEADER ================= */
+
+.header {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    padding: 25px;
+    text-align: center;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+}
+
+.header h1 {
+    font-size: 3rem;
+    margin-bottom: 8px;
+}
+
+.header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+
+/* ================= MAIN LAYOUT ================= */
+
+.dashboard {
+    display: flex;
+    min-height: calc(100vh - 120px);
+}
+
+
+/* ================= SIDEBAR ================= */
+
+.sidebar {
+    width: 280px;
+    min-width: 280px;
+    background: white;
+    border-right: 1px solid #e2e8f0;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    color: #2563eb;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+}
+
+
+/* History cards */
+
+.history-item {
+    background: linear-gradient(135deg, #eff6ff, #eef2ff);
+    border: 1px solid #dbeafe;
+    border-radius: 12px;
+    padding: 15px;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: 0.25s;
+}
+
+.history-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.15);
+}
+
+.history-item h4 {
+    color: #1e40af;
+    margin-bottom: 5px;
+}
+
+.history-item p {
+    color: #64748b;
+}
+
+
+/* ================= MAIN CONTENT ================= */
+
+.main-content {
+    flex: 1;
+    padding: 20px;
+}
+
+
+/* ================= EDITOR ================= */
+
+.editor-card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 25px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.editor-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.editor-toolbar select {
+    padding: 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.editor-toolbar button {
+    background: linear-gradient(135deg, #2563eb, #7c3aed);
+    color: white;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s;
+    font-weight: 600;
+}
+
+.editor-toolbar button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+}
+
+
+/* ================= COMMON CARD ================= */
+
+.card {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.card h2 {
+    margin-bottom: 15px;
+    color: #2563eb;
+}
+
+
+/* ================= ANALYSIS GRID ================= */
+
+.analysis-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+
+/* Structure card */
+
+.analysis-box:nth-child(1) {
+    background: #eff6ff;
+    border-left: 5px solid #2563eb;
+}
+
+
+/* Complexity card */
+
+.analysis-box:nth-child(2) {
+    background: #f0fdf4;
+    border-left: 5px solid #22c55e;
+}
+
+
+/* Confidence card */
+
+.analysis-box:nth-child(3) {
+    background: #fff7ed;
+    border-left: 5px solid #f97316;
+}
+
+.analysis-box {
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 180px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.analysis-box h3 {
+    margin-bottom: 15px;
+}
+
+.analysis-box ul {
+    list-style: none;
+}
+
+.analysis-box li {
+    margin-bottom: 10px;
+}
+
+
+/* ================= CONFIDENCE ================= */
+
+.confidence-score {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
+    color: #f97316;
+}
+
+
+/* ================= OPTIMIZATION PANEL ================= */
+
+.diff-container {
+    background: white;
+    border-radius: 15px;
+    padding: 20px;
+    min-height: 300px;
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+    border-left: 5px solid #7c3aed;
+}
+
+
+/* ================= STATES ================= */
+
+.loading {
+    text-align: center;
+    padding: 40px;
+    color: #64748b;
+}
+
+.error {
+    background: #fee2e2;
+    color: #dc2626;
+    border-left: 5px solid #dc2626;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+
+/* ================= SCROLLBAR ================= */
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #94a3b8;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #64748b;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 1024px) {
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .dashboard {
+        flex-direction: column;
+    }
+    .sidebar {
+        width: 100%;
+        min-width: 100%;
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+    }
+    .editor-toolbar {
+        flex-direction: column;
+        gap: 10px;
+        align-items: stretch;
+    }
+}
+
+.analysis-card {
+    background: #ffffff;
+    border-radius: 18px;
+    padding: 25px;
+    margin-top: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+    border-left: 6px solid #6366f1;
+    transition: transform 0.2s ease;
+}
+
+.analysis-card:hover {
+    transform: translateY(-3px);
+}
+
+.analysis-card h2 {
+    color: #1e293b;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.analysis-card p {
+    color: #475569;
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.structure-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.structure-item {
+    background: linear-gradient(135deg, #eef2ff, #ffffff);
+    padding: 18px;
+    border-radius: 12px;
+    text-align: center;
+    border: 1px solid #dbeafe;
+}
+
+.structure-item h3 {
+    color: #6366f1;
+    font-size: 28px;
+    margin-bottom: 8px;
+}
+
+.structure-item span {
+    color: #64748b;
+    font-size: 16px;
+}
+
+.complexity-container {
+    display: flex;
+    gap: 20px;
+}
+
+.complexity-box {
+    flex: 1;
+    background: linear-gradient(135deg, #f8fafc, #eef2ff);
+    border-radius: 14px;
+    padding: 20px;
+    text-align: center;
+}
+
+.complexity-box h3 {
+    color: #6366f1;
+    margin-bottom: 10px;
+}
+
+.complexity-box p {
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.confidence-circle {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #6366f1, #8b5cf6);
+    color: white;
+    font-size: 36px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+}
+
+.code-block {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+    font-family: "Fira Code", monospace;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.explanation-text {
+    background: #eef2ff;
+    padding: 20px;
+    border-radius: 12px;
+    color: #334155;
+    font-size: 18px;
+    line-height: 1.8;
+    border-left: 5px solid #6366f1;
+}
+
+.history-title-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.delete-history-btn {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    font-size: 18px;
+    color: #999;
+}
+
+.delete-history-btn:hover {
+    color: #ff4d4f;
+}
+
+.clear-history-btn {
+    border: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+}

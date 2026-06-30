@@ -1,0 +1,2 @@
+spring.application.name=code_explainer_backend
+server.port=8080

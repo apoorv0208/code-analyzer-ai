@@ -1,0 +1,35 @@
+@Component
+public class PythonCodeParser {
+
+    public StructureDto parsePython(String code) {
+
+        StructureDto dto = new StructureDto();
+
+        dto.setFunctions(
+                countMatches(code, "def ")
+        );
+
+        dto.setLoops(
+                countMatches(code, "for ")
+                +
+                countMatches(code, "while ")
+        );
+
+        dto.setConditionals(
+                countMatches(code, "if ")
+        );
+
+        dto.setClasses(
+                countMatches(code, "class ")
+        );
+
+        return dto;
+    }
+
+    private int countMatches(
+            String text,
+            String pattern) {
+
+        return text.split(pattern, -1).length - 1;
+    }
+}

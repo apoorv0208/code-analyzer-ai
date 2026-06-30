@@ -1,0 +1,3 @@
+spring.application.name=code_explainer_backend
+server.port=8080
+openai.api.key=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

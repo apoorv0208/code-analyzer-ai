@@ -1,0 +1,43 @@
+package com.apoorv.codeexplainer.parser;
+
+import org.springframework.stereotype.Component;
+
+import com.apoorv.codeexplainer.dto.StructureDto;
+
+@Component
+public class PythonCodeParser {
+
+    public StructureDto parsePython(String code) {
+
+        StructureDto dto = new StructureDto();
+
+        dto.setFunctions(
+                countMatches(code, "def ")
+        );
+
+        dto.setLoops(
+        		countRegex(code, "\\bfor\\s+\\w+\\s+in\\s+")
+        	       +
+        	    countRegex(code, "\\bwhile\\s+")
+        );
+
+        dto.setConditionals(
+                countMatches(code, "if ")
+        );
+
+        dto.setClasses(
+                countMatches(code, "class ")
+        );
+        System.out.println("FOR count: " + countMatches(code, "for "));
+        System.out.println("WHILE count: " + countMatches(code, "while "));
+        System.out.println("Total loops: " + dto.getLoops());
+        return dto;
+    }
+
+    private int countMatches(
+            String text,
+            String pattern) {
+
+        return text.split(pattern, -1).length - 1;
+    }
+}

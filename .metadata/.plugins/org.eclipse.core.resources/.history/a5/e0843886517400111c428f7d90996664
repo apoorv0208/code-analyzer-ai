@@ -1,0 +1,30 @@
+package com.apoorv.codeexplainer.service;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.web.client.RestTemplate;
+@Service
+public class OpenAIService {
+
+    @Value("${openai.api.key}")
+    private String apiKey;
+
+    @Value("${openai.model}")
+    private String model;
+
+    private final RestTemplate restTemplate;
+
+    public OpenAIService(RestTemplate restTemplate) {
+        this.restTemplate = restTemplate;
+    }
+    public String explainCode(String code, String language) {
+
+        return "This code processes input and performs the requested operation using "
+                + language + ".";
+    }
+
+    public String optimizeCode(String code, String language) {
+
+        return code;
+    }
+}
